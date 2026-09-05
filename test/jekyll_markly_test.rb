@@ -22,7 +22,7 @@ class JekyllMarklyTest < JekyllMarklyTestCase
     MD
 
     assert_snapshot(<<~SNAP, html)
-      <div class="language-console?comments=true highlighter-rouge"><pre class="highlight"><code data-lang="console?comments=true"><span class="c"># frank
+      <div class="language-console highlighter-rouge"><pre class="highlight"><code data-lang="console"><span class="c"># frank
       </span></code></pre></div>
     SNAP
   end

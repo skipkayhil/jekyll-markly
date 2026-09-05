@@ -48,7 +48,7 @@ class Jekyll::Markly::HtmlRenderer < Markly::Renderer::HTML
 
   def code_block(node)
     block do
-      lang = extract_code_lang(node.fence_info)
+      lang, lang_with_options = extract_code_lang(node.fence_info)
 
       out('<div class="')
       out("language-", lang, " ") if lang
@@ -63,7 +63,7 @@ class Jekyll::Markly::HtmlRenderer < Markly::Renderer::HTML
         out_data_attr(lang)
         out(">")
       end
-      out(render_with_rouge(node.string_content, lang))
+      out(render_with_rouge(node.string_content, lang_with_options))
       out("</code></pre></div>")
     end
   end
@@ -74,7 +74,10 @@ class Jekyll::Markly::HtmlRenderer < Markly::Renderer::HTML
     return unless info.is_a?(String)
     return if info.empty?
 
-    info.split(%r{\s+})[0]
+    lang_with_options = info.split(%r{\s+})[0]
+    lang = lang_with_options.split("?")[0]
+
+    [lang, lang_with_options]
   end
 
   def out_data_attr(lang)
