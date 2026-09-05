@@ -98,11 +98,14 @@ end
 
 class Jekyll::Converters::Markdown::Markly
   def initialize(config)
-    @extensions = config.dig("commonmark", "extensions").map!(&:to_sym)
+    @extensions = config.dig("commonmark", "extensions")&.map!(&:to_sym) || [].freeze
 
-    symbol_options = config.dig("commonmark", "options").map!(&:to_sym)
-    @parse_flags = symbol_options.filter_map { |k| Markly::PARSE_FLAGS[k] }.reduce(&:|)
-    @render_flags = symbol_options.filter_map { |k| Markly::RENDER_FLAGS[k] }.reduce(&:|)
+    if (symbol_options = config.dig("commonmark", "options")&.map!(&:to_sym))
+      @parse_flags = symbol_options.filter_map { |k| Markly::PARSE_FLAGS[k] }.reduce(&:|)
+      @render_flags = symbol_options.filter_map { |k| Markly::RENDER_FLAGS[k] }.reduce(&:|)
+    else
+      @parse_flags = @render_flags = 0
+    end
   end
 
   def convert(content)
