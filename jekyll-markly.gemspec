@@ -33,5 +33,7 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "markly", "~> 0.17"
+  spec.add_dependency "jekyll", ">= 4.0"
+  spec.add_dependency "markly", ">= 0.17"
+  spec.add_dependency "rouge", ">= 3.0"
 end
