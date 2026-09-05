@@ -14,6 +14,19 @@ class JekyllMarklyTest < JekyllMarklyTestCase
     SNAP
   end
 
+  test "lang attributes include lexer options" do
+    html = md_to_html(<<~MD)
+      ```console?comments=true
+      # frank
+      ```
+    MD
+
+    assert_snapshot(<<~SNAP, html)
+      <div class="language-console?comments=true highlighter-rouge"><pre class="highlight"><code data-lang="console?comments=true"><span class="c"># frank
+      </span></code></pre></div>
+    SNAP
+  end
+
   private
 
   def assert_snapshot(expected, actual)
