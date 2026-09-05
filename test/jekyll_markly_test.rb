@@ -9,8 +9,8 @@ class JekyllMarklyTest < JekyllMarklyTestCase
     MD
 
     assert_snapshot(<<~SNAP, html)
-      <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="ruby"><span class="mi">3</span><span class="p">.</span><span class="nf">times</span> <span class="p">{}</span>
-      </code></pre></div></div>
+      <div class="language-ruby highlighter-rouge"><pre class="highlight"><code data-lang="ruby"><span class="mi">3</span><span class="p">.</span><span class="nf">times</span> <span class="p">{}</span>
+      </code></pre></div>
     SNAP
   end
 

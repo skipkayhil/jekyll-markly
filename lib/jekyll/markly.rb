@@ -52,7 +52,7 @@ class Jekyll::Markly::HtmlRenderer < Markly::Renderer::HTML
 
       out('<div class="')
       out("language-", lang, " ") if lang
-      out('highlighter-rouge"><div class="highlight">')
+      out('highlighter-rouge">')
       out("<pre", source_position(node), ' class="highlight"')
 
       if flag_enabled?(Markly::GITHUB_PRE_LANG)
@@ -64,7 +64,7 @@ class Jekyll::Markly::HtmlRenderer < Markly::Renderer::HTML
         out(">")
       end
       out(render_with_rouge(node.string_content, lang))
-      out("</code></pre></div></div>")
+      out("</code></pre></div>")
     end
   end
 
